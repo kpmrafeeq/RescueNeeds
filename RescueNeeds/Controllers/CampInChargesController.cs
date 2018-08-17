@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RescueNeeds.Service;
+using RescueNeeds.App_Start;
 
 namespace RescueNeeds.Controllers
 {
+    [AuthorizeUser]
     public class CampInChargesController : Controller
     {
         private RescueNeedsEntities db = new RescueNeedsEntities();
