@@ -70,7 +70,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/27/2012 13:00:52</publishTime>
     </File>
     <File Include="bin/RescueNeeds.dll">
-      <publishTime>08/18/2018 01:11:08</publishTime>
+      <publishTime>08/18/2018 02:04:57</publishTime>
     </File>
     <File Include="bin/RescueNeeds.Service.dll">
       <publishTime>08/17/2018 23:53:13</publishTime>
@@ -158,6 +158,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Global.asax">
       <publishTime>08/17/2018 18:38:34</publishTime>
+    </File>
+    <File Include="keralarescueneeds.PNG">
+      <publishTime>08/18/2018 01:55:16</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>08/17/2018 18:39:02</publishTime>
@@ -4555,10 +4558,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 18:38:53</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/18/2018 00:21:50</publishTime>
+      <publishTime>08/18/2018 01:56:05</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>08/18/2018 00:21:34</publishTime>
+      <publishTime>08/18/2018 01:56:23</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>08/17/2018 18:38:34</publishTime>
@@ -4567,7 +4570,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 18:38:34</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/18/2018 01:11:10</publishTime>
+      <publishTime>08/18/2018 02:05:05</publishTime>
     </File>
   </ItemGroup>
 </Project>
