@@ -1,13 +1,19 @@
 ﻿@model IEnumerable<RescueNeeds.Service.CampRequirement>
-
 @{
     ViewBag.Title = "Details";
+    var currentCamp = 0;
+    var firstItem = Model.FirstOrDefault();
+    if (firstItem != null)
+    {
+        currentCamp = firstItem.CampsID.Value;
+    }
 }
 
 <div class="card mb-3">
     <div class="card-header">
         <i class="fas fa-table"></i>
-        Available in camps
+        Available in camps <a href="/home/details/@currentCamp#disqus_thread"></a>
+
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -24,9 +30,9 @@
                             @Html.DisplayNameFor(model => model.Camp.Name)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Item.Name)
+                            Item
                         </th>
-                        
+
                     </tr>
                 <thead>
                 <tbody>
@@ -45,12 +51,32 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Item.Name)
                             </td>
-                         
+
                         </tr>
                     }
                 </tbody>
             </table>
 
         </div>
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url = 'http://keralarescueneeds.in/home/details/@currentCamp';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '@currentCamp'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            (function () {
+                var d = document, s = d.createElement('script');
+                s.src = '//keralarescueneeds-in.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
 </div>
+@section scripts
+{
+    <script id="dsq-count-scr" src="//keralarescueneeds-in.disqus.com/count.js" async></script>
+}
