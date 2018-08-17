@@ -1,0 +1,41 @@
+﻿@model RescueNeeds.Service.Place
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Details
+    </div>
+    <div class="card-body">
+
+        <div>
+
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.District.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.District.Name)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.PlaceID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

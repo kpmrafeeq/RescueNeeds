@@ -1,0 +1,64 @@
+﻿@model RescueNeeds.Service.Camp
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Delete
+    </div>
+    <div class="card-body">
+
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Camp</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address1)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address1)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.District.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.District.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Place.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Place.Name)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

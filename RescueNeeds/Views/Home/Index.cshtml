@@ -1,0 +1,84 @@
+﻿@model RescueNeeds.Models.CampRequirementHomeViewModel
+
+@{
+    ViewBag.Title = "Camps";
+}
+
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i> Shelters
+    </div>
+    <div class="card-body">
+        <div class="">
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <select required="required" class="form-control" name="district">
+                                <option value="">Select district</option>
+                                @foreach (var item in Model.District)
+                                {
+                                    <option value="@item.DistrictID">@item.Name</option>
+                                }
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <select class="form-control" name="place">
+                                <option value="">Select place</option>
+                                @foreach (var item in Model.Places)
+                                {
+                                    <option value="@item.PlaceID">@item.Name</option>
+                                }
+                            </select>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <input type="submit" value="search" class="btn btn-primary btn-block">
+            }
+        </div>
+
+        @if (Model.Data.Any())
+        {
+            <div class="row padding-top-10">
+                @foreach (var item in Model.Data)
+                {
+                    <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-success o-hidden h-100">
+                            @*bg-danger*@
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i class="fas fa-fw fa-shopping-cart"></i>
+                                </div>
+                                <div class="mr-5">@item.Name</div>
+                            </div>
+                            @Html.ActionLink("Details", "Details", new { id = item.CampsID }) |
+                            <a class="card-footer text-white clearfix small z-1" href="/Home/Details/@item.CampsID">
+                                <span class="float-left">View Details</span>
+                                <span class="float-right">
+                                    <i class="fas fa-angle-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        }
+    </div>
+</div>
+
+
+<!-- Icon Cards-->

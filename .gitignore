@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/RescueNeeds.Service/bin
+/RescueNeeds.Service/obj
+/RescueNeeds/obj
+/RescueNeeds/bin
+/packages

@@ -1,0 +1,592 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RescueNeedsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CampInCharge">
+          <Key>
+            <PropertyRef Name="CampsID" />
+          </Key>
+          <Property Name="CampsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="2000" />
+          <Property Name="PlaceID" Type="int" />
+          <Property Name="DistrictID" Type="int" />
+          <Property Name="PersonID" Type="int" />
+        </EntityType>
+        <EntityType Name="CampRequirement">
+          <Key>
+            <PropertyRef Name="CampRequirementID" />
+          </Key>
+          <Property Name="CampRequirementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampsID" Type="int" />
+          <Property Name="ItemID" Type="int" />
+          <Property Name="Need" Type="int" />
+          <Property Name="Recieved" Type="int" />
+        </EntityType>
+        <EntityType Name="Camps">
+          <Key>
+            <PropertyRef Name="CampsID" />
+          </Key>
+          <Property Name="CampsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="2000" />
+          <Property Name="PlaceID" Type="int" />
+          <Property Name="DistrictID" Type="int" />
+        </EntityType>
+        <EntityType Name="Discussion">
+          <Key>
+            <PropertyRef Name="DiscussionID" />
+          </Key>
+          <Property Name="DiscussionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="CampsID" Type="int" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="DistrictID" />
+          </Key>
+          <Property Name="DistrictID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Persons">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="Cell" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Places">
+          <Key>
+            <PropertyRef Name="PlaceID" />
+          </Key>
+          <Property Name="PlaceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="DistrictID" Type="int" />
+        </EntityType>
+        <Association Name="FK__CampInCha__Distr__2E1BDC42">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictID" />
+            </Principal>
+            <Dependent Role="CampInCharge">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CampInCha__Perso__300424B4">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
+          <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="CampInCharge">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CampInCha__Place__2F10007B">
+          <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
+          <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="CampInCharge">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CampRequi__Camps__35BCFE0A">
+          <End Role="Camps" Type="Self.Camps" Multiplicity="0..1" />
+          <End Role="CampRequirement" Type="Self.CampRequirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camps">
+              <PropertyRef Name="CampsID" />
+            </Principal>
+            <Dependent Role="CampRequirement">
+              <PropertyRef Name="CampsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CampRequi__ItemI__34C8D9D1">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="CampRequirement" Type="Self.CampRequirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="CampRequirement">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Camps__DistrictI__239E4DCF">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Camps" Type="Self.Camps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictID" />
+            </Principal>
+            <Dependent Role="Camps">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Camps__PlaceID__24927208">
+          <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
+          <End Role="Camps" Type="Self.Camps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Camps">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Discussio__Camps__38996AB5">
+          <End Role="Camps" Type="Self.Camps" Multiplicity="0..1" />
+          <End Role="Discussion" Type="Self.Discussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camps">
+              <PropertyRef Name="CampsID" />
+            </Principal>
+            <Dependent Role="Discussion">
+              <PropertyRef Name="CampsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Places__District__20C1E124">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Places" Type="Self.Places" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictID" />
+            </Principal>
+            <Dependent Role="Places">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RescueNeedsModelStoreContainer">
+          <EntitySet Name="CampInCharge" EntityType="Self.CampInCharge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CampRequirement" EntityType="Self.CampRequirement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Camps" EntityType="Self.Camps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discussion" EntityType="Self.Discussion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CampInCha__Distr__2E1BDC42" Association="Self.FK__CampInCha__Distr__2E1BDC42">
+            <End Role="District" EntitySet="District" />
+            <End Role="CampInCharge" EntitySet="CampInCharge" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CampInCha__Perso__300424B4" Association="Self.FK__CampInCha__Perso__300424B4">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="CampInCharge" EntitySet="CampInCharge" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CampInCha__Place__2F10007B" Association="Self.FK__CampInCha__Place__2F10007B">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="CampInCharge" EntitySet="CampInCharge" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CampRequi__Camps__35BCFE0A" Association="Self.FK__CampRequi__Camps__35BCFE0A">
+            <End Role="Camps" EntitySet="Camps" />
+            <End Role="CampRequirement" EntitySet="CampRequirement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CampRequi__ItemI__34C8D9D1" Association="Self.FK__CampRequi__ItemI__34C8D9D1">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="CampRequirement" EntitySet="CampRequirement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Camps__DistrictI__239E4DCF" Association="Self.FK__Camps__DistrictI__239E4DCF">
+            <End Role="District" EntitySet="District" />
+            <End Role="Camps" EntitySet="Camps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Camps__PlaceID__24927208" Association="Self.FK__Camps__PlaceID__24927208">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Camps" EntitySet="Camps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Discussio__Camps__38996AB5" Association="Self.FK__Discussio__Camps__38996AB5">
+            <End Role="Camps" EntitySet="Camps" />
+            <End Role="Discussion" EntitySet="Discussion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Places__District__20C1E124" Association="Self.FK__Places__District__20C1E124">
+            <End Role="District" EntitySet="District" />
+            <End Role="Places" EntitySet="Places" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RescueNeedsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CampInCharge">
+          <Key>
+            <PropertyRef Name="CampsID" />
+          </Key>
+          <Property Name="CampsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceID" Type="Int32" />
+          <Property Name="DistrictID" Type="Int32" />
+          <Property Name="PersonID" Type="Int32" />
+          <NavigationProperty Name="District" Relationship="Self.FK__CampInCha__Distr__2E1BDC42" FromRole="CampInCharge" ToRole="District" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__CampInCha__Perso__300424B4" FromRole="CampInCharge" ToRole="Persons" />
+          <NavigationProperty Name="Place" Relationship="Self.FK__CampInCha__Place__2F10007B" FromRole="CampInCharge" ToRole="Places" />
+        </EntityType>
+        <EntityType Name="CampRequirement">
+          <Key>
+            <PropertyRef Name="CampRequirementID" />
+          </Key>
+          <Property Name="CampRequirementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampsID" Type="Int32" />
+          <Property Name="ItemID" Type="Int32" />
+          <Property Name="Need" Type="Int32" />
+          <Property Name="Recieved" Type="Int32" />
+          <NavigationProperty Name="Camp" Relationship="Self.FK__CampRequi__Camps__35BCFE0A" FromRole="CampRequirement" ToRole="Camps" />
+          <NavigationProperty Name="Item" Relationship="Self.FK__CampRequi__ItemI__34C8D9D1" FromRole="CampRequirement" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Camp">
+          <Key>
+            <PropertyRef Name="CampsID" />
+          </Key>
+          <Property Name="CampsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceID" Type="Int32" />
+          <Property Name="DistrictID" Type="Int32" />
+          <NavigationProperty Name="CampRequirements" Relationship="Self.FK__CampRequi__Camps__35BCFE0A" FromRole="Camps" ToRole="CampRequirement" />
+          <NavigationProperty Name="District" Relationship="Self.FK__Camps__DistrictI__239E4DCF" FromRole="Camps" ToRole="District" />
+          <NavigationProperty Name="Place" Relationship="Self.FK__Camps__PlaceID__24927208" FromRole="Camps" ToRole="Places" />
+          <NavigationProperty Name="Discussions" Relationship="Self.FK__Discussio__Camps__38996AB5" FromRole="Camps" ToRole="Discussion" />
+        </EntityType>
+        <EntityType Name="Discussion">
+          <Key>
+            <PropertyRef Name="DiscussionID" />
+          </Key>
+          <Property Name="DiscussionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CampsID" Type="Int32" />
+          <NavigationProperty Name="Camp" Relationship="Self.FK__Discussio__Camps__38996AB5" FromRole="Discussion" ToRole="Camps" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="DistrictID" />
+          </Key>
+          <Property Name="DistrictID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CampInCharges" Relationship="Self.FK__CampInCha__Distr__2E1BDC42" FromRole="District" ToRole="CampInCharge" />
+          <NavigationProperty Name="Camps" Relationship="Self.FK__Camps__DistrictI__239E4DCF" FromRole="District" ToRole="Camps" />
+          <NavigationProperty Name="Places" Relationship="Self.FK__Places__District__20C1E124" FromRole="District" ToRole="Places" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CampRequirements" Relationship="Self.FK__CampRequi__ItemI__34C8D9D1" FromRole="Item" ToRole="CampRequirement" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Cell" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CampInCharges" Relationship="Self.FK__CampInCha__Perso__300424B4" FromRole="Persons" ToRole="CampInCharge" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="PlaceID" />
+          </Key>
+          <Property Name="PlaceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DistrictID" Type="Int32" />
+          <NavigationProperty Name="CampInCharges" Relationship="Self.FK__CampInCha__Place__2F10007B" FromRole="Places" ToRole="CampInCharge" />
+          <NavigationProperty Name="Camps" Relationship="Self.FK__Camps__PlaceID__24927208" FromRole="Places" ToRole="Camps" />
+          <NavigationProperty Name="District" Relationship="Self.FK__Places__District__20C1E124" FromRole="Places" ToRole="District" />
+        </EntityType>
+        <Association Name="FK__CampInCha__Distr__2E1BDC42">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictID" />
+            </Principal>
+            <Dependent Role="CampInCharge">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CampInCha__Perso__300424B4">
+          <End Role="Persons" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="CampInCharge">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CampInCha__Place__2F10007B">
+          <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="CampInCharge">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CampRequi__Camps__35BCFE0A">
+          <End Role="Camps" Type="Self.Camp" Multiplicity="0..1" />
+          <End Role="CampRequirement" Type="Self.CampRequirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camps">
+              <PropertyRef Name="CampsID" />
+            </Principal>
+            <Dependent Role="CampRequirement">
+              <PropertyRef Name="CampsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CampRequi__ItemI__34C8D9D1">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="CampRequirement" Type="Self.CampRequirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="CampRequirement">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Camps__DistrictI__239E4DCF">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Camps" Type="Self.Camp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictID" />
+            </Principal>
+            <Dependent Role="Camps">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Camps__PlaceID__24927208">
+          <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="Camps" Type="Self.Camp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Camps">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Discussio__Camps__38996AB5">
+          <End Role="Camps" Type="Self.Camp" Multiplicity="0..1" />
+          <End Role="Discussion" Type="Self.Discussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camps">
+              <PropertyRef Name="CampsID" />
+            </Principal>
+            <Dependent Role="Discussion">
+              <PropertyRef Name="CampsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Places__District__20C1E124">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Places" Type="Self.Place" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictID" />
+            </Principal>
+            <Dependent Role="Places">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RescueNeedsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CampInCharges" EntityType="Self.CampInCharge" />
+          <EntitySet Name="CampRequirements" EntityType="Self.CampRequirement" />
+          <EntitySet Name="Camps" EntityType="Self.Camp" />
+          <EntitySet Name="Discussions" EntityType="Self.Discussion" />
+          <EntitySet Name="Districts" EntityType="Self.District" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Persons" EntityType="Self.Person" />
+          <EntitySet Name="Places" EntityType="Self.Place" />
+          <AssociationSet Name="FK__CampInCha__Distr__2E1BDC42" Association="Self.FK__CampInCha__Distr__2E1BDC42">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="CampInCharge" EntitySet="CampInCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CampInCha__Perso__300424B4" Association="Self.FK__CampInCha__Perso__300424B4">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="CampInCharge" EntitySet="CampInCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CampInCha__Place__2F10007B" Association="Self.FK__CampInCha__Place__2F10007B">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="CampInCharge" EntitySet="CampInCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CampRequi__Camps__35BCFE0A" Association="Self.FK__CampRequi__Camps__35BCFE0A">
+            <End Role="Camps" EntitySet="Camps" />
+            <End Role="CampRequirement" EntitySet="CampRequirements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CampRequi__ItemI__34C8D9D1" Association="Self.FK__CampRequi__ItemI__34C8D9D1">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="CampRequirement" EntitySet="CampRequirements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Camps__DistrictI__239E4DCF" Association="Self.FK__Camps__DistrictI__239E4DCF">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="Camps" EntitySet="Camps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Camps__PlaceID__24927208" Association="Self.FK__Camps__PlaceID__24927208">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Camps" EntitySet="Camps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Discussio__Camps__38996AB5" Association="Self.FK__Discussio__Camps__38996AB5">
+            <End Role="Camps" EntitySet="Camps" />
+            <End Role="Discussion" EntitySet="Discussions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Places__District__20C1E124" Association="Self.FK__Places__District__20C1E124">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="Places" EntitySet="Places" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RescueNeedsModelStoreContainer" CdmEntityContainer="RescueNeedsEntities">
+          <EntitySetMapping Name="CampInCharges">
+            <EntityTypeMapping TypeName="RescueNeedsModel.CampInCharge">
+              <MappingFragment StoreEntitySet="CampInCharge">
+                <ScalarProperty Name="CampsID" ColumnName="CampsID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CampRequirements">
+            <EntityTypeMapping TypeName="RescueNeedsModel.CampRequirement">
+              <MappingFragment StoreEntitySet="CampRequirement">
+                <ScalarProperty Name="CampRequirementID" ColumnName="CampRequirementID" />
+                <ScalarProperty Name="CampsID" ColumnName="CampsID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Need" ColumnName="Need" />
+                <ScalarProperty Name="Recieved" ColumnName="Recieved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Camps">
+            <EntityTypeMapping TypeName="RescueNeedsModel.Camp">
+              <MappingFragment StoreEntitySet="Camps">
+                <ScalarProperty Name="CampsID" ColumnName="CampsID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discussions">
+            <EntityTypeMapping TypeName="RescueNeedsModel.Discussion">
+              <MappingFragment StoreEntitySet="Discussion">
+                <ScalarProperty Name="DiscussionID" ColumnName="DiscussionID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CampsID" ColumnName="CampsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="RescueNeedsModel.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="RescueNeedsModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persons">
+            <EntityTypeMapping TypeName="RescueNeedsModel.Person">
+              <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Cell" ColumnName="Cell" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Places">
+            <EntityTypeMapping TypeName="RescueNeedsModel.Place">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

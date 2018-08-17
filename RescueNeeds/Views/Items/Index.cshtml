@@ -1,0 +1,45 @@
+﻿@model IEnumerable<RescueNeeds.Service.Item>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+       Items @Html.ActionLink("Create New", "Create")
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ItemID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ItemID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ItemID })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

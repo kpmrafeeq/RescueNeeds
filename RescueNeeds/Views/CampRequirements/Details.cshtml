@@ -1,0 +1,53 @@
+﻿@model RescueNeeds.Service.CampRequirement
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Details
+    </div>
+    <div class="card-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Need)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Need)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Recieved)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Recieved)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Camp.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Camp.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Item.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Item.Name)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CampRequirementID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+
+</div>
