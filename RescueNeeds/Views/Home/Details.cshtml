@@ -73,23 +73,26 @@
                     }
                 </tbody>
             </table>
-            <h4>Please comment below if you would like to contribute something to this relief camp</h4>
+        
         </div>
         <div class="row"><div class="col-sm-12 "><h5>Please comment below if you would like to contribute something to this relief camp</h5></div></div>
-        <div id="disqus_thread"></div>
-        <script>
+ 
+        <div class="fb-comments" expr:data-href="http://keralarescueneeds.in/home/details/@currentCamp" expr:title='@ViewBag.Title' expr:xid='@currentCamp' data-width="100%" data-numposts="5" 
+             data-order-by="social" data-colorscheme="light"></div>
 
-            var disqus_config = function () {
-                this.page.url = 'http://keralarescueneeds.in/home/details/@currentCamp';  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = '@currentCamp'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            (function () {
-                var d = document, s = d.createElement('script');
-                s.src = '//keralarescueneeds-in.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
 </div>
+@section scripts
+{
+        <script>
+    //<![CDATA[
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    //]]>
+    </script>
+}
