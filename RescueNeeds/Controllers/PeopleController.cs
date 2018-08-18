@@ -11,7 +11,7 @@ using RescueNeeds.App_Start;
 
 namespace RescueNeeds.Controllers
 {
-    [AuthorizeUser]
+    [AuthorizeUser(Role = "Admin")]
     public class PeopleController : Controller
     {
         private RescueNeedsEntities db = new RescueNeedsEntities();

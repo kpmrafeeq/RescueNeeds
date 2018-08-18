@@ -12,7 +12,7 @@ using RescueNeeds.Models;
 
 namespace RescueNeeds.Controllers
 {
-    [AuthorizeUser]
+    [AuthorizeUser(Role = "Admin")]
     public class CampInChargesController : Controller
     {
         private RescueNeedsEntities db = new RescueNeedsEntities();

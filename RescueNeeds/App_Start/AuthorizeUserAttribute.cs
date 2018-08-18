@@ -8,6 +8,7 @@ namespace RescueNeeds.App_Start
 {
     public class AuthorizeUserAttribute : AuthorizeAttribute
     {
+        public string Role { get; set; }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
             filterContext.Result = new RedirectResult("/account/login");
@@ -15,7 +16,9 @@ namespace RescueNeeds.App_Start
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext.Session["Logged"] == "true")
+            var roles = Role.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var role = httpContext.Session["Role"];
+            if (httpContext.Session["Logged"] == "true" && roles.Any(x => x == (string)role))
             {
 
                 return true;

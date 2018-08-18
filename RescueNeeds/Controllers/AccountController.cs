@@ -23,11 +23,13 @@ namespace RescueNeeds.Controllers
             Session["SuperAdmin"] = "false";
             Session["CampAdmin"] = "false";
             Session["CampAdminID"] = "";
+
             if (username == ConfigurationManager.AppSettings["username"] && password == ConfigurationManager.AppSettings["password"])
             {
                 Session["Logged"] = "true";
                 Session["SuperAdmin"] = "true";
                 Session["CampAdmin"] = "false";
+                Session["Role"] = "Admin";
                 return RedirectToAction("index", "home");
             }
 
@@ -41,7 +43,7 @@ namespace RescueNeeds.Controllers
                 Session["Logged"] = "true";
                 Session["SuperAdmin"] = "false";
                 Session["CampAdmin"] = "true";
-
+                Session["Role"] = "CampAdmin";
                 return RedirectToAction("index", "home");
             }
             else
