@@ -179,6 +179,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CampDetailsViewModel.cs" />
+    <Compile Include="Models\CampInChargeViewModel.cs" />
     <Compile Include="Models\CampRequirementHomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

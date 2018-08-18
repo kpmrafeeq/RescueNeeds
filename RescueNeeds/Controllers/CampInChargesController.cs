@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using RescueNeeds.Service;
 using RescueNeeds.App_Start;
+using RescueNeeds.Models;
 
 namespace RescueNeeds.Controllers
 {
@@ -41,8 +42,9 @@ namespace RescueNeeds.Controllers
         // GET: CampInCharges/Create
         public ActionResult Create()
         {
-            ViewBag.CampsID = new SelectList(db.Camps, "CampsID", "Name");
-            ViewBag.PersonID = new SelectList(db.Persons, "PersonID", "LastName");
+            ViewBag.CampsID = db.Camps.Include(d=>d.District).ToList(); ;
+
+            //ViewBag.PersonID = new SelectList(db.Persons, "PersonID", "LastName");
             return View();
         }
 
@@ -51,13 +53,33 @@ namespace RescueNeeds.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CampInChargeID,CampsID,PersonID")] CampInCharge campInCharge)
+        public ActionResult Create([Bind(Include = "CampInChargeID,CampsID,PersonID,LastName,FirstName,Address,Cell,Email")] CampInChargeViewModel campInCharge)
         {
             if (ModelState.IsValid)
             {
-                db.CampInCharges.Add(campInCharge);
+                Person person = new Person()
+                {
+                    PersonID = campInCharge.PersonID,
+                    Address = campInCharge.Address,
+                    Cell = campInCharge.Cell,
+                    Email = campInCharge.Email,
+                    FirstName = campInCharge.FirstName,
+                    LastName = campInCharge.LastName
+                };
+                db.Persons.Add(person);
+                var updatedPErson = db.SaveChanges();
+
+                CampInCharge data = new CampInCharge()
+                {
+                    PersonID = person.PersonID,
+                    CampInChargeID = campInCharge.CampInChargeID,
+                    CampsID = campInCharge.CampsID
+                };
+                db.CampInCharges.Add(data);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
+
             }
 
             ViewBag.CampsID = new SelectList(db.Camps, "CampsID", "Name", campInCharge.CampsID);
@@ -73,6 +95,8 @@ namespace RescueNeeds.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             CampInCharge campInCharge = db.CampInCharges.Find(id);
+           
+
             if (campInCharge == null)
             {
                 return HttpNotFound();
