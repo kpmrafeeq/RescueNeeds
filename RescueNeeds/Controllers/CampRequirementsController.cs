@@ -20,7 +20,19 @@ namespace RescueNeeds.Controllers
         public ActionResult Index()
         {
             var campRequirements = db.CampRequirements.Include(c => c.Camp).Include(c => c.Item);
-            return View(campRequirements.ToList());
+            
+            if (Session["CampAdmin"] == "true")
+            {
+                var id = (int)Session["CampAdminID"];
+                var camp = db.CampInCharges.Where(x => x.CampInChargeID == id).Select(y => y.CampsID);
+                campRequirements = campRequirements.Where(x => camp.Contains(x.CampsID));
+                return View(campRequirements.ToList());
+            }
+            else
+            {
+                return View(campRequirements.ToList());
+            }
+            
         }
 
         // GET: CampRequirements/Details/5

@@ -14,6 +14,7 @@ namespace RescueNeeds.Models
         public string Address { get; set; }
         public string Cell { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
 
         public int CampInChargeID { get; set; }
         public Nullable<int> CampsID { get; set; }

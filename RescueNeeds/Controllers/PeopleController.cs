@@ -80,7 +80,7 @@ namespace RescueNeeds.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PersonID,LastName,FirstName,Address,Cell,Email")] Person person)
+        public ActionResult Edit([Bind(Include = "PersonID,LastName,FirstName,Address,Cell,Email,Password")] Person person)
         {
             if (ModelState.IsValid)
             {

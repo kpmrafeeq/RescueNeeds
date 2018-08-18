@@ -15,17 +15,18 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.Need)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Recieved)
-                        </th>
-                        <th>
                             @Html.DisplayNameFor(model => model.Camp.Name)
                         </th>
                         <th>
                             Item
                         </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Need)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Recieved)
+                        </th>
+                       
                         <th></th>
                     </tr>
                 <thead>
@@ -34,17 +35,18 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Need)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Recieved)
-                            </td>
-                            <td>
                                 @Html.DisplayFor(modelItem => item.Camp.Name)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Item.Name)
                             </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Need)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Recieved)
+                            </td>
+                          
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.CampRequirementID }) |
                                 @Html.ActionLink("Details", "Details", new { id = item.CampRequirementID }) |

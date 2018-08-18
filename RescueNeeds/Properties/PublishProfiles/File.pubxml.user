@@ -70,10 +70,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/27/2012 13:00:52</publishTime>
     </File>
     <File Include="bin/RescueNeeds.dll">
-      <publishTime>08/18/2018 15:20:28</publishTime>
+      <publishTime>08/18/2018 16:15:47</publishTime>
     </File>
     <File Include="bin/RescueNeeds.Service.dll">
-      <publishTime>08/18/2018 10:42:50</publishTime>
+      <publishTime>08/18/2018 16:15:41</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/18/2015 20:19:46</publishTime>
@@ -4435,7 +4435,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/18/2018 00:58:54</publishTime>
     </File>
     <File Include="Views/CampInCharges/Create.cshtml">
-      <publishTime>08/18/2018 15:10:06</publishTime>
+      <publishTime>08/18/2018 15:54:10</publishTime>
     </File>
     <File Include="Views/CampInCharges/Delete.cshtml">
       <publishTime>08/18/2018 10:35:48</publishTime>
@@ -4447,7 +4447,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/18/2018 10:37:07</publishTime>
     </File>
     <File Include="Views/CampInCharges/Index.cshtml">
-      <publishTime>08/18/2018 10:38:10</publishTime>
+      <publishTime>08/18/2018 15:36:28</publishTime>
     </File>
     <File Include="Views/CampRequirements/Create.cshtml">
       <publishTime>08/17/2018 21:56:36</publishTime>
@@ -4462,7 +4462,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 21:58:15</publishTime>
     </File>
     <File Include="Views/CampRequirements/Index.cshtml">
-      <publishTime>08/18/2018 02:43:22</publishTime>
+      <publishTime>08/18/2018 16:08:45</publishTime>
     </File>
     <File Include="Views/Camps/Create.cshtml">
       <publishTime>08/17/2018 20:21:46</publishTime>
@@ -4531,7 +4531,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 20:16:31</publishTime>
     </File>
     <File Include="Views/People/Edit.cshtml">
-      <publishTime>08/17/2018 20:17:05</publishTime>
+      <publishTime>08/18/2018 15:48:41</publishTime>
     </File>
     <File Include="Views/People/Index.cshtml">
       <publishTime>08/17/2018 20:33:08</publishTime>
@@ -4558,10 +4558,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 18:38:53</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/18/2018 14:34:57</publishTime>
+      <publishTime>08/18/2018 15:59:05</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>08/18/2018 14:34:57</publishTime>
+      <publishTime>08/18/2018 15:59:20</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>08/17/2018 18:38:34</publishTime>

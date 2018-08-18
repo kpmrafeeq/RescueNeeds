@@ -53,7 +53,7 @@ namespace RescueNeeds.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CampInChargeID,CampsID,PersonID,LastName,FirstName,Address,Cell,Email")] CampInChargeViewModel campInCharge)
+        public ActionResult Create([Bind(Include = "CampInChargeID,CampsID,PersonID,LastName,FirstName,Address,Cell,Email,Password")] CampInChargeViewModel campInCharge)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,8 @@ namespace RescueNeeds.Controllers
                     Cell = campInCharge.Cell,
                     Email = campInCharge.Email,
                     FirstName = campInCharge.FirstName,
-                    LastName = campInCharge.LastName
+                    LastName = campInCharge.LastName,
+                    Password=campInCharge.Password
                 };
                 db.Persons.Add(person);
                 var updatedPErson = db.SaveChanges();
