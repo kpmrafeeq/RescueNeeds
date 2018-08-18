@@ -36,14 +36,18 @@
                     <span>Admin</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    @Html.ActionLink("Camp requirements", "", "CampRequirements", null, new { @class = "dropdown-item" })
+                    
                     @if (Session["SuperAdmin"] == "true")
                     {
                         @Html.ActionLink("Camps", "", "Camps", null, new { @class = "dropdown-item" })
                         @Html.ActionLink("Camp in charge", "", "CampInCharges", null, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Persons", "", "People", null, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Rescue Places", "", "Places", null, new { @class = "dropdown-item" })
+                        @*@Html.ActionLink("Persons", "", "People", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Rescue Places", "", "Places", null, new { @class = "dropdown-item" })*@
                         @*@Html.ActionLink("Relief Items", "", "Items", null, new { @class = "dropdown-item" })*@
+                    }
+                    else
+                    {
+                            @Html.ActionLink("Camp requirements", "", "CampRequirements", null, new { @class = "dropdown-item" })
                     }
 
                 </div>

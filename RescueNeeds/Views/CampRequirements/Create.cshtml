@@ -1,7 +1,7 @@
 ﻿@model RescueNeeds.Service.CampRequirement
-
 @{
     ViewBag.Title = "Create";
+    var camps = ViewBag.CampsID as List<RescueNeeds.Service.Camp>;
 }
 
 <div class="card mb-3">
@@ -23,7 +23,12 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.CampsID, "CampsID", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("CampsID", null, htmlAttributes: new { @class = "form-control" })
+                        <select name="CampsID" id="CampsID" class="form-control" required="required"> 
+                            @foreach (var camp in camps)
+                            {
+                                <option id="@camp.CampsID">@camp.Name</option>
+                            }
+                        </select>
                         @Html.ValidationMessageFor(model => model.CampsID, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -31,7 +36,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ItemID, "ItemID", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("ItemID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("ItemID", null, htmlAttributes: new { @class = "form-control", required = "required" })
                         @Html.ValidationMessageFor(model => model.ItemID, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -39,7 +44,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Need, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Need, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Need, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.Need, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -47,7 +52,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Recieved, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Recieved, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Recieved, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.Recieved, "", new { @class = "text-danger" })
                     </div>
                 </div>

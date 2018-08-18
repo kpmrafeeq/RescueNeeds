@@ -75,6 +75,13 @@
                                     @item.Name
                                     <br />
                                     @item.Address1
+                                    <br />
+                                    @foreach (var c in item.CampInCharges)
+                                    {
+                                        <span>
+                                            @c.Person.FirstName (@(c.Person.Cell))
+                                        </span>
+                                    }
                                 </div>
                             </div>
 
