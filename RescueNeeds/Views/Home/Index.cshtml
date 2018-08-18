@@ -44,7 +44,7 @@
                                             }
                                         </optgroup>
                                     }*@
-                                @foreach (var place in Model.Places)
+                                @foreach (var place in Model.Places.OrderBy(x=>x.Name))
                                 {
                                     <option value="@place.PlaceID" data-district="@place.DistrictID">@place.Name</option>
                                 }
