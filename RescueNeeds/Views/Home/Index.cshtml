@@ -21,26 +21,35 @@
                 <div class="form-row">
                     <div class="col-md-6">
                         <div class="form-label-group">
-                            <select required="required" class="form-control" name="district">
+                            <select required="required" class="form-control district-data" name="district">
                                 <option value="">Select district</option>
                                 @foreach (var item in Model.District)
                                 {
                                     <option value="@item.DistrictID">@item.Name</option>
                                 }
                             </select>
-                            
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-label-group">
-                            <select class="form-control" name="place">
-                                <option value="">Select place</option>
-                                @foreach (var item in Model.Places)
+                            <select class="form-control place-list" name="place">
+                                <option value="" class="default">Select place</option>
+                                @*@foreach (var item in Model.Places.GroupBy(x => x.District.Name))
                                 {
-                                    <option value="@item.PlaceID">@item.Name</option>
+                                    <optgroup label="@item.Key">
+                                        @foreach (var place in item)
+                                        {
+                                            <option value="@place.PlaceID" data-district="@place.DistrictID">@place.Name</option>
+                                        }
+                                    </optgroup>
+                                }*@
+                                @foreach (var place in Model.Places)
+                                {
+                                    <option value="@place.PlaceID" data-district="@place.DistrictID">@place.Name</option>
                                 }
                             </select>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -61,26 +70,27 @@
                                 <div class="card-body-icon">
                                     <i class="fas fa-fw fa-shopping-cart"></i>
                                 </div>
-                                <div class="mr-5">@item.Name
-                                <br/>
+                                <div class="mr-5">
+                                    @item.Name
+                                <br />
                                 @item.Address1
-                                </div>
                             </div>
-                            
-                            <a class="card-footer text-white clearfix small z-1" href="/home/details/@item.CampsID">
-                                <span class="float-left">View Details</span>
-                                <span class="float-right">
-                                    <i class="fas fa-angle-right"></i>
-                                </span>
-                            </a>
                         </div>
+
+                        <a class="card-footer text-white clearfix small z-1" href="/home/details/@item.CampsID">
+                            <span class="float-left">View Details</span>
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </a>
                     </div>
+                </div>
                 }
 
 
             </div>
         }
-        else if(ViewBag.Search == "True")
+        else if (ViewBag.Search == "True")
         {
             <div class="row padding-top-10">
                 <div class="col-xl-12">
