@@ -19,7 +19,7 @@ namespace RescueNeeds.Controllers
         // GET: CampInCharges
         public ActionResult Index()
         {
-            var campInCharges = db.CampInCharges.Include(c => c.District).Include(c => c.Person).Include(c => c.Place);
+            var campInCharges = db.CampInCharges.Include(c => c.Camp).Include(c => c.Person);
             return View(campInCharges.ToList());
         }
 
@@ -41,9 +41,8 @@ namespace RescueNeeds.Controllers
         // GET: CampInCharges/Create
         public ActionResult Create()
         {
-            ViewBag.DistrictID = new SelectList(db.Districts, "DistrictID", "Name");
+            ViewBag.CampsID = new SelectList(db.Camps, "CampsID", "Name");
             ViewBag.PersonID = new SelectList(db.Persons, "PersonID", "LastName");
-            ViewBag.PlaceID = new SelectList(db.Places, "PlaceID", "Name");
             return View();
         }
 
@@ -52,7 +51,7 @@ namespace RescueNeeds.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CampsID,Name,Address1,PlaceID,DistrictID,PersonID")] CampInCharge campInCharge)
+        public ActionResult Create([Bind(Include = "CampInChargeID,CampsID,PersonID")] CampInCharge campInCharge)
         {
             if (ModelState.IsValid)
             {
@@ -61,9 +60,8 @@ namespace RescueNeeds.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DistrictID = new SelectList(db.Districts, "DistrictID", "Name", campInCharge.DistrictID);
+            ViewBag.CampsID = new SelectList(db.Camps, "CampsID", "Name", campInCharge.CampsID);
             ViewBag.PersonID = new SelectList(db.Persons, "PersonID", "LastName", campInCharge.PersonID);
-            ViewBag.PlaceID = new SelectList(db.Places, "PlaceID", "Name", campInCharge.PlaceID);
             return View(campInCharge);
         }
 
@@ -79,9 +77,8 @@ namespace RescueNeeds.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DistrictID = new SelectList(db.Districts, "DistrictID", "Name", campInCharge.DistrictID);
+            ViewBag.CampsID = new SelectList(db.Camps, "CampsID", "Name", campInCharge.CampsID);
             ViewBag.PersonID = new SelectList(db.Persons, "PersonID", "LastName", campInCharge.PersonID);
-            ViewBag.PlaceID = new SelectList(db.Places, "PlaceID", "Name", campInCharge.PlaceID);
             return View(campInCharge);
         }
 
@@ -90,7 +87,7 @@ namespace RescueNeeds.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CampsID,Name,Address1,PlaceID,DistrictID,PersonID")] CampInCharge campInCharge)
+        public ActionResult Edit([Bind(Include = "CampInChargeID,CampsID,PersonID")] CampInCharge campInCharge)
         {
             if (ModelState.IsValid)
             {
@@ -98,9 +95,8 @@ namespace RescueNeeds.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DistrictID = new SelectList(db.Districts, "DistrictID", "Name", campInCharge.DistrictID);
+            ViewBag.CampsID = new SelectList(db.Camps, "CampsID", "Name", campInCharge.CampsID);
             ViewBag.PersonID = new SelectList(db.Persons, "PersonID", "LastName", campInCharge.PersonID);
-            ViewBag.PlaceID = new SelectList(db.Places, "PlaceID", "Name", campInCharge.PlaceID);
             return View(campInCharge);
         }
 

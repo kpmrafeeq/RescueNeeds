@@ -25,7 +25,6 @@ namespace RescueNeeds.Service
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<CampInCharge> CampInCharges { get; set; }
         public DbSet<CampRequirement> CampRequirements { get; set; }
         public DbSet<Camp> Camps { get; set; }
         public DbSet<Discussion> Discussions { get; set; }
@@ -33,5 +32,6 @@ namespace RescueNeeds.Service
         public DbSet<Item> Items { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Place> Places { get; set; }
+        public DbSet<CampInCharge> CampInCharges { get; set; }
     }
 }

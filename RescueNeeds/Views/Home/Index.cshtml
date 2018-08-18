@@ -61,7 +61,10 @@
                                 <div class="card-body-icon">
                                     <i class="fas fa-fw fa-shopping-cart"></i>
                                 </div>
-                                <div class="mr-5">@item.Name</div>
+                                <div class="mr-5">@item.Name
+                                <br/>
+                                @item.Address1
+                                </div>
                             </div>
                             
                             <a class="card-footer text-white clearfix small z-1" href="/home/details/@item.CampsID">
@@ -75,6 +78,14 @@
                 }
 
 
+            </div>
+        }
+        else if(ViewBag.Search == "True")
+        {
+            <div class="row padding-top-10">
+                <div class="col-xl-12">
+                    <h4>No camps details available, please check after some time</h4>
+                </div>
             </div>
         }
     </div>

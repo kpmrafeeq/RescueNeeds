@@ -4,16 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RescueNeedsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RescueNeedsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CampInCharge">
           <Key>
-            <PropertyRef Name="CampsID" />
+            <PropertyRef Name="CampInChargeID" />
           </Key>
-          <Property Name="CampsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" />
-          <Property Name="Address1" Type="nvarchar" MaxLength="2000" />
-          <Property Name="PlaceID" Type="int" />
-          <Property Name="DistrictID" Type="int" />
+          <Property Name="CampInChargeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampsID" Type="int" />
           <Property Name="PersonID" Type="int" />
         </EntityType>
         <EntityType Name="CampRequirement">
@@ -77,19 +74,19 @@
           <Property Name="Name" Type="varchar" MaxLength="255" />
           <Property Name="DistrictID" Type="int" />
         </EntityType>
-        <Association Name="FK__CampInCha__Distr__2E1BDC42">
-          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+        <Association Name="FK__CampInCha__Camps__3F466844">
+          <End Role="Camps" Type="Self.Camps" Multiplicity="0..1" />
           <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="District">
-              <PropertyRef Name="DistrictID" />
+            <Principal Role="Camps">
+              <PropertyRef Name="CampsID" />
             </Principal>
             <Dependent Role="CampInCharge">
-              <PropertyRef Name="DistrictID" />
+              <PropertyRef Name="CampsID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CampInCha__Perso__300424B4">
+        <Association Name="FK__CampInCha__Perso__412EB0B6">
           <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
           <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
           <ReferentialConstraint>
@@ -98,18 +95,6 @@
             </Principal>
             <Dependent Role="CampInCharge">
               <PropertyRef Name="PersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CampInCha__Place__2F10007B">
-          <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
-          <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Places">
-              <PropertyRef Name="PlaceID" />
-            </Principal>
-            <Dependent Role="CampInCharge">
-              <PropertyRef Name="PlaceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -194,16 +179,12 @@
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__CampInCha__Distr__2E1BDC42" Association="Self.FK__CampInCha__Distr__2E1BDC42">
-            <End Role="District" EntitySet="District" />
+          <AssociationSet Name="FK__CampInCha__Camps__3F466844" Association="Self.FK__CampInCha__Camps__3F466844">
+            <End Role="Camps" EntitySet="Camps" />
             <End Role="CampInCharge" EntitySet="CampInCharge" />
           </AssociationSet>
-          <AssociationSet Name="FK__CampInCha__Perso__300424B4" Association="Self.FK__CampInCha__Perso__300424B4">
+          <AssociationSet Name="FK__CampInCha__Perso__412EB0B6" Association="Self.FK__CampInCha__Perso__412EB0B6">
             <End Role="Persons" EntitySet="Persons" />
-            <End Role="CampInCharge" EntitySet="CampInCharge" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CampInCha__Place__2F10007B" Association="Self.FK__CampInCha__Place__2F10007B">
-            <End Role="Places" EntitySet="Places" />
             <End Role="CampInCharge" EntitySet="CampInCharge" />
           </AssociationSet>
           <AssociationSet Name="FK__CampRequi__Camps__35BCFE0A" Association="Self.FK__CampRequi__Camps__35BCFE0A">
@@ -231,25 +212,10 @@
             <End Role="Places" EntitySet="Places" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RescueNeedsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="CampInCharge">
-          <Key>
-            <PropertyRef Name="CampsID" />
-          </Key>
-          <Property Name="CampsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Address1" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="PlaceID" Type="Int32" />
-          <Property Name="DistrictID" Type="Int32" />
-          <Property Name="PersonID" Type="Int32" />
-          <NavigationProperty Name="District" Relationship="Self.FK__CampInCha__Distr__2E1BDC42" FromRole="CampInCharge" ToRole="District" />
-          <NavigationProperty Name="Person" Relationship="Self.FK__CampInCha__Perso__300424B4" FromRole="CampInCharge" ToRole="Persons" />
-          <NavigationProperty Name="Place" Relationship="Self.FK__CampInCha__Place__2F10007B" FromRole="CampInCharge" ToRole="Places" />
-        </EntityType>
         <EntityType Name="CampRequirement">
           <Key>
             <PropertyRef Name="CampRequirementID" />
@@ -275,6 +241,7 @@
           <NavigationProperty Name="District" Relationship="Self.FK__Camps__DistrictI__239E4DCF" FromRole="Camps" ToRole="District" />
           <NavigationProperty Name="Place" Relationship="Self.FK__Camps__PlaceID__24927208" FromRole="Camps" ToRole="Places" />
           <NavigationProperty Name="Discussions" Relationship="Self.FK__Discussio__Camps__38996AB5" FromRole="Camps" ToRole="Discussion" />
+          <NavigationProperty Name="CampInCharges" Relationship="RescueNeedsModel.FK__CampInCha__Camps__3F466844" FromRole="Camp" ToRole="CampInCharge" />
         </EntityType>
         <EntityType Name="Discussion">
           <Key>
@@ -291,7 +258,6 @@
           </Key>
           <Property Name="DistrictID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CampInCharges" Relationship="Self.FK__CampInCha__Distr__2E1BDC42" FromRole="District" ToRole="CampInCharge" />
           <NavigationProperty Name="Camps" Relationship="Self.FK__Camps__DistrictI__239E4DCF" FromRole="District" ToRole="Camps" />
           <NavigationProperty Name="Places" Relationship="Self.FK__Places__District__20C1E124" FromRole="District" ToRole="Places" />
         </EntityType>
@@ -313,7 +279,7 @@
           <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Cell" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CampInCharges" Relationship="Self.FK__CampInCha__Perso__300424B4" FromRole="Persons" ToRole="CampInCharge" />
+          <NavigationProperty Name="CampInCharges" Relationship="RescueNeedsModel.FK__CampInCha__Perso__412EB0B6" FromRole="Person" ToRole="CampInCharge" />
         </EntityType>
         <EntityType Name="Place">
           <Key>
@@ -322,46 +288,9 @@
           <Property Name="PlaceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="DistrictID" Type="Int32" />
-          <NavigationProperty Name="CampInCharges" Relationship="Self.FK__CampInCha__Place__2F10007B" FromRole="Places" ToRole="CampInCharge" />
           <NavigationProperty Name="Camps" Relationship="Self.FK__Camps__PlaceID__24927208" FromRole="Places" ToRole="Camps" />
           <NavigationProperty Name="District" Relationship="Self.FK__Places__District__20C1E124" FromRole="Places" ToRole="District" />
         </EntityType>
-        <Association Name="FK__CampInCha__Distr__2E1BDC42">
-          <End Role="District" Type="Self.District" Multiplicity="0..1" />
-          <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="District">
-              <PropertyRef Name="DistrictID" />
-            </Principal>
-            <Dependent Role="CampInCharge">
-              <PropertyRef Name="DistrictID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CampInCha__Perso__300424B4">
-          <End Role="Persons" Type="Self.Person" Multiplicity="0..1" />
-          <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persons">
-              <PropertyRef Name="PersonID" />
-            </Principal>
-            <Dependent Role="CampInCharge">
-              <PropertyRef Name="PersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CampInCha__Place__2F10007B">
-          <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
-          <End Role="CampInCharge" Type="Self.CampInCharge" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Places">
-              <PropertyRef Name="PlaceID" />
-            </Principal>
-            <Dependent Role="CampInCharge">
-              <PropertyRef Name="PlaceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__CampRequi__Camps__35BCFE0A">
           <End Role="Camps" Type="Self.Camp" Multiplicity="0..1" />
           <End Role="CampRequirement" Type="Self.CampRequirement" Multiplicity="*" />
@@ -435,7 +364,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RescueNeedsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CampInCharges" EntityType="Self.CampInCharge" />
           <EntitySet Name="CampRequirements" EntityType="Self.CampRequirement" />
           <EntitySet Name="Camps" EntityType="Self.Camp" />
           <EntitySet Name="Discussions" EntityType="Self.Discussion" />
@@ -443,18 +371,6 @@
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="Persons" EntityType="Self.Person" />
           <EntitySet Name="Places" EntityType="Self.Place" />
-          <AssociationSet Name="FK__CampInCha__Distr__2E1BDC42" Association="Self.FK__CampInCha__Distr__2E1BDC42">
-            <End Role="District" EntitySet="Districts" />
-            <End Role="CampInCharge" EntitySet="CampInCharges" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CampInCha__Perso__300424B4" Association="Self.FK__CampInCha__Perso__300424B4">
-            <End Role="Persons" EntitySet="Persons" />
-            <End Role="CampInCharge" EntitySet="CampInCharges" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CampInCha__Place__2F10007B" Association="Self.FK__CampInCha__Place__2F10007B">
-            <End Role="Places" EntitySet="Places" />
-            <End Role="CampInCharge" EntitySet="CampInCharges" />
-          </AssociationSet>
           <AssociationSet Name="FK__CampRequi__Camps__35BCFE0A" Association="Self.FK__CampRequi__Camps__35BCFE0A">
             <End Role="Camps" EntitySet="Camps" />
             <End Role="CampRequirement" EntitySet="CampRequirements" />
@@ -479,25 +395,56 @@
             <End Role="District" EntitySet="Districts" />
             <End Role="Places" EntitySet="Places" />
           </AssociationSet>
+          <EntitySet Name="CampInCharges" EntityType="RescueNeedsModel.CampInCharge" />
+          <AssociationSet Name="FK__CampInCha__Camps__3F466844" Association="RescueNeedsModel.FK__CampInCha__Camps__3F466844">
+            <End Role="Camp" EntitySet="Camps" />
+            <End Role="CampInCharge" EntitySet="CampInCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CampInCha__Perso__412EB0B6" Association="RescueNeedsModel.FK__CampInCha__Perso__412EB0B6">
+            <End Role="Person" EntitySet="Persons" />
+            <End Role="CampInCharge" EntitySet="CampInCharges" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="CampInCharge">
+          <Key>
+            <PropertyRef Name="CampInChargeID" />
+          </Key>
+          <Property Name="CampInChargeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampsID" Type="Int32" />
+          <Property Name="PersonID" Type="Int32" />
+          <NavigationProperty Name="Camp" Relationship="RescueNeedsModel.FK__CampInCha__Camps__3F466844" FromRole="CampInCharge" ToRole="Camp" />
+          <NavigationProperty Name="Person" Relationship="RescueNeedsModel.FK__CampInCha__Perso__412EB0B6" FromRole="CampInCharge" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK__CampInCha__Camps__3F466844">
+          <End Type="RescueNeedsModel.Camp" Role="Camp" Multiplicity="0..1" />
+          <End Type="RescueNeedsModel.CampInCharge" Role="CampInCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camp">
+              <PropertyRef Name="CampsID" />
+            </Principal>
+            <Dependent Role="CampInCharge">
+              <PropertyRef Name="CampsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CampInCha__Perso__412EB0B6">
+          <End Type="RescueNeedsModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="RescueNeedsModel.CampInCharge" Role="CampInCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="CampInCharge">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RescueNeedsModelStoreContainer" CdmEntityContainer="RescueNeedsEntities">
-          <EntitySetMapping Name="CampInCharges">
-            <EntityTypeMapping TypeName="RescueNeedsModel.CampInCharge">
-              <MappingFragment StoreEntitySet="CampInCharge">
-                <ScalarProperty Name="CampsID" ColumnName="CampsID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
-                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CampRequirements">
             <EntityTypeMapping TypeName="RescueNeedsModel.CampRequirement">
               <MappingFragment StoreEntitySet="CampRequirement">
@@ -566,6 +513,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CampInCharges">
+            <EntityTypeMapping TypeName="RescueNeedsModel.CampInCharge">
+              <MappingFragment StoreEntitySet="CampInCharge">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="CampsID" ColumnName="CampsID" />
+                <ScalarProperty Name="CampInChargeID" ColumnName="CampInChargeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -582,7 +538,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

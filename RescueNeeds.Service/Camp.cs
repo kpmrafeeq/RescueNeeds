@@ -18,6 +18,7 @@ namespace RescueNeeds.Service
         {
             this.CampRequirements = new HashSet<CampRequirement>();
             this.Discussions = new HashSet<Discussion>();
+            this.CampInCharges = new HashSet<CampInCharge>();
         }
     
         public int CampsID { get; set; }
@@ -30,5 +31,6 @@ namespace RescueNeeds.Service
         public virtual District District { get; set; }
         public virtual Place Place { get; set; }
         public virtual ICollection<Discussion> Discussions { get; set; }
+        public virtual ICollection<CampInCharge> CampInCharges { get; set; }
     }
 }

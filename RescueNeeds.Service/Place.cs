@@ -16,7 +16,6 @@ namespace RescueNeeds.Service
     {
         public Place()
         {
-            this.CampInCharges = new HashSet<CampInCharge>();
             this.Camps = new HashSet<Camp>();
         }
     
@@ -24,7 +23,6 @@ namespace RescueNeeds.Service
         public string Name { get; set; }
         public Nullable<int> DistrictID { get; set; }
     
-        public virtual ICollection<CampInCharge> CampInCharges { get; set; }
         public virtual ICollection<Camp> Camps { get; set; }
         public virtual District District { get; set; }
     }

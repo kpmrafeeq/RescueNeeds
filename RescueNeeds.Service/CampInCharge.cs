@@ -14,15 +14,11 @@ namespace RescueNeeds.Service
     
     public partial class CampInCharge
     {
-        public int CampsID { get; set; }
-        public string Name { get; set; }
-        public string Address1 { get; set; }
-        public Nullable<int> PlaceID { get; set; }
-        public Nullable<int> DistrictID { get; set; }
+        public int CampInChargeID { get; set; }
+        public Nullable<int> CampsID { get; set; }
         public Nullable<int> PersonID { get; set; }
     
-        public virtual District District { get; set; }
+        public virtual Camp Camp { get; set; }
         public virtual Person Person { get; set; }
-        public virtual Place Place { get; set; }
     }
 }

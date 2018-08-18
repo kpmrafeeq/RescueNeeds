@@ -178,6 +178,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CampDetailsViewModel.cs" />
     <Compile Include="Models\CampRequirementHomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1658,11 +1659,6 @@
     <Content Include="Views\Camps\Details.cshtml" />
     <Content Include="Views\Camps\Edit.cshtml" />
     <Content Include="Views\Camps\Index.cshtml" />
-    <Content Include="Views\CampInCharges\Create.cshtml" />
-    <Content Include="Views\CampInCharges\Delete.cshtml" />
-    <Content Include="Views\CampInCharges\Details.cshtml" />
-    <Content Include="Views\CampInCharges\Edit.cshtml" />
-    <Content Include="Views\CampInCharges\Index.cshtml" />
     <Content Include="Views\CampRequirements\Create.cshtml" />
     <Content Include="Views\CampRequirements\Delete.cshtml" />
     <Content Include="Views\CampRequirements\Details.cshtml" />
@@ -1674,6 +1670,11 @@
     <Content Include="Views\Home\Disclaimer.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\CampInCharges\Create.cshtml" />
+    <Content Include="Views\CampInCharges\Delete.cshtml" />
+    <Content Include="Views\CampInCharges\Details.cshtml" />
+    <Content Include="Views\CampInCharges\Edit.cshtml" />
+    <Content Include="Views\CampInCharges\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RescueNeeds.Service\RescueNeeds.Service.csproj">

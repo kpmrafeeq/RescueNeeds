@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="339f9c2705e94089a52e0a9b9f3152ec" Name="Diagram1">
-        <EntityTypeShape EntityType="RescueNeedsModel.CampInCharge" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RescueNeedsModel.CampRequirement" Width="1.5" PointX="10.5" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RescueNeedsModel.Camp" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RescueNeedsModel.Discussion" Width="1.5" PointX="10.5" PointY="12.875" IsExpanded="true" />
@@ -13,15 +12,15 @@
         <EntityTypeShape EntityType="RescueNeedsModel.Item" Width="1.5" PointX="8.25" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RescueNeedsModel.Person" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RescueNeedsModel.Place" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
-        <AssociationConnector Association="RescueNeedsModel.FK__CampInCha__Distr__2E1BDC42" ManuallyRouted="false" />
-        <AssociationConnector Association="RescueNeedsModel.FK__CampInCha__Perso__300424B4" ManuallyRouted="false" />
-        <AssociationConnector Association="RescueNeedsModel.FK__CampInCha__Place__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="RescueNeedsModel.FK__CampRequi__Camps__35BCFE0A" ManuallyRouted="false" />
         <AssociationConnector Association="RescueNeedsModel.FK__CampRequi__ItemI__34C8D9D1" ManuallyRouted="false" />
         <AssociationConnector Association="RescueNeedsModel.FK__Camps__DistrictI__239E4DCF" ManuallyRouted="false" />
         <AssociationConnector Association="RescueNeedsModel.FK__Camps__PlaceID__24927208" ManuallyRouted="false" />
         <AssociationConnector Association="RescueNeedsModel.FK__Discussio__Camps__38996AB5" ManuallyRouted="false" />
         <AssociationConnector Association="RescueNeedsModel.FK__Places__District__20C1E124" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RescueNeedsModel.CampInCharge" Width="1.5" PointX="13.5" PointY="9.75" />
+        <AssociationConnector Association="RescueNeedsModel.FK__CampInCha__Camps__3F466844" />
+        <AssociationConnector Association="RescueNeedsModel.FK__CampInCha__Perso__412EB0B6" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -28,8 +28,10 @@ namespace RescueNeeds.Controllers
                 Places=places
             };
             int districtId,placeId;
+            ViewBag.Search = "False";
             if(!string.IsNullOrEmpty(district) &&  int.TryParse(district, out districtId))
             {
+                ViewBag.Search = "True";
                 var campRequirements = db.Camps;
                 model.Data = campRequirements.Where(x => x.DistrictID == districtId);
             }
@@ -49,11 +51,19 @@ namespace RescueNeeds.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             List<CampRequirement> campRequirement = db.CampRequirements.Where(x => x.CampsID.Value == id).ToList();
+            var campIncharge = db.CampInCharges.Include(y=>y.Person).FirstOrDefault(x => x.CampsID == id);
             if (campRequirement == null)
             {
                 return HttpNotFound();
             }
-            return View(campRequirement);
+            CampDetailsViewModel model = new CampDetailsViewModel()
+            {
+                CampsDetails = campRequirement,
+                CampInCharge = campIncharge
+            };
+
+
+            return View(model);
         }
 
         public ActionResult Contact()

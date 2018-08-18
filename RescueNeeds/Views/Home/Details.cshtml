@@ -1,10 +1,11 @@
-﻿@model IEnumerable<RescueNeeds.Service.CampRequirement>
+﻿@model RescueNeeds.Models.CampDetailsViewModel
 @{
-    ViewBag.Title = "Details";
+
     var currentCamp = 0;
-    var firstItem = Model.FirstOrDefault();
+    var firstItem = Model.CampsDetails.FirstOrDefault();
     if (firstItem != null)
     {
+        ViewBag.Title = firstItem.Camp.Name + " Shelter Details";
         currentCamp = firstItem.CampsID.Value;
     }
 }
@@ -21,36 +22,52 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.Need)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Recieved)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Camp.Name)
+                            Name
                         </th>
                         <th>
                             Item
                         </th>
-
+                        <th>
+                            Need
+                        </th>
+                        <th>
+                            Available
+                        </th>
                     </tr>
                 <thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.CampsDetails)
                     {
                         <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Camp.Name)
+                                <br />
+                                @Html.DisplayFor(modelItem => item.Camp.Address1)
+                                <br />
+                                @item.Camp.Place.Name
+                                <br />
+                                @if (Model.CampInCharge != null)
+                                {
+                                    <span>
+                                        Contact Person: @Model.CampInCharge.Person.FirstName  @Model.CampInCharge.Person.LastName
+                                        <br/>
+                                        Contact: @Model.CampInCharge.Person.Cell
+                                        <br />
+                                        Email : @Model.CampInCharge.Person.Email
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Item.Name)
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Need)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Recieved)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Camp.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Item.Name)
-                            </td>
+
+
 
                         </tr>
                     }

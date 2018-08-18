@@ -19,11 +19,10 @@
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
         </button>
-
     </nav>
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <ul class="sidebar navbar-nav">
+
+    <div id="wrapper" >
+        <ul class="sidebar navbar-nav @(Session["Logged"] != "true"? "hidethisblock" : "")">
             <li class="nav-item active">
                 <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -36,8 +35,8 @@
                     <span>Admin</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    @Html.ActionLink("Districts", "", "Districts", null, new { @class = "dropdown-item" })
-                    @Html.ActionLink("Relief Items", "", "Items", null, new { @class = "dropdown-item" })
+                    @*@Html.ActionLink("Districts", "", "Districts", null, new { @class = "dropdown-item" })*@
+                    @*@Html.ActionLink("Relief Items", "", "Items", null, new { @class = "dropdown-item" })*@
                     @Html.ActionLink("Persons", "", "People", null, new { @class = "dropdown-item" })
                     @Html.ActionLink("Rescue Places", "", "Places", null, new { @class = "dropdown-item" })
                     @Html.ActionLink("Camps", "", "Camps", null, new { @class = "dropdown-item" })
@@ -60,7 +59,7 @@
             </div>
             <!-- /.container-fluid -->
             <!-- Sticky Footer -->
-            <footer class="sticky-footer">
+            <footer class="sticky-footer @(Session["Logged"] != "true"? "width100" : "")">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright keralarescueneeds.in©  Website 2018</span>
@@ -69,6 +68,7 @@
             </footer>
         </div>
     </div>
+
     <!-- /#wrapper -->
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
