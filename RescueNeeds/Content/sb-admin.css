@@ -392,3 +392,7 @@ footer.sticky-footer.width100
 {
     display:none !important;
 }
+
+.bg-none {
+    background-color: gray;
+}

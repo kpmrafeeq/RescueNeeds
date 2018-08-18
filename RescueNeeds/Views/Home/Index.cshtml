@@ -63,12 +63,13 @@
             <div class="row padding-top-10">
                 @foreach (var item in Model.Data)
                 {
-                    var camprequirementStatus = item.CampRequirements.Any(x => x.Recieved > x.Need);
+                    var requiredItems = item.CampRequirements.Count;
+                    var camprequirementStatus =  item.CampRequirements.Any(x => x.Recieved > x.Need);
                     <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card text-white @(camprequirementStatus ? "bg-success" : "bg-danger")  o-hidden h-100">
+                        <div class="card text-white @(requiredItems ==0 ? "bg-primary" :camprequirementStatus ? "bg-success" : "bg-danger")  o-hidden h-100">
                             <div class="card-body">
                                 <div class="card-body-icon">
-                                    <i class="fas fa-fw fa-shopping-cart"></i>
+                                    <i class="fas fa-fw fa-warehouse"></i>
                                 </div>
                                 <div class="mr-5">
                                     @item.Name
