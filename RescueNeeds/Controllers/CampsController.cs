@@ -42,7 +42,7 @@ namespace RescueNeeds.Controllers
         public ActionResult Create()
         {
             ViewBag.DistrictID = new SelectList(db.Districts, "DistrictID", "Name");
-            ViewBag.PlaceID = db.Places.ToList();
+            ViewBag.PlaceID = db.Places.OrderBy(x => x.Name).ToList();
             return View();
         }
 
