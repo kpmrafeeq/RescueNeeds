@@ -8,6 +8,7 @@
         ViewBag.Title = firstItem.Camp.Name + " Shelter Details";
         currentCamp = firstItem.CampsID.Value;
     }
+    var flag = true;
 }
 
 <div class="card mb-3">
@@ -46,7 +47,7 @@
                                 <br />
                                 @item.Camp.Place.Name
                                 <br />
-                                @if (Model.CampInCharge != null)
+                                @if (Model.CampInCharge != null && flag)
                                 {
                                     <span>
                                         Contact Person: @Model.CampInCharge.Person.FirstName  @Model.CampInCharge.Person.LastName
@@ -55,6 +56,7 @@
                                         <br />
                                         Email : @Model.CampInCharge.Person.Email
                                     </span>
+                                    flag = false;
                                 }
                             </td>
                             <td>

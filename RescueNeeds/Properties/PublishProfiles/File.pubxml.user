@@ -70,7 +70,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/27/2012 13:00:52</publishTime>
     </File>
     <File Include="bin/RescueNeeds.dll">
-      <publishTime>08/18/2018 21:26:11</publishTime>
+      <publishTime>08/18/2018 23:10:28</publishTime>
     </File>
     <File Include="bin/RescueNeeds.Service.dll">
       <publishTime>08/18/2018 21:02:33</publishTime>
@@ -4435,7 +4435,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/18/2018 00:58:54</publishTime>
     </File>
     <File Include="Views/CampInCharges/Create.cshtml">
-      <publishTime>08/18/2018 15:54:10</publishTime>
+      <publishTime>08/18/2018 21:36:20</publishTime>
     </File>
     <File Include="Views/CampInCharges/Delete.cshtml">
       <publishTime>08/18/2018 10:35:48</publishTime>
@@ -4504,7 +4504,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/18/2018 19:37:43</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>08/18/2018 21:24:37</publishTime>
+      <publishTime>08/18/2018 21:42:30</publishTime>
     </File>
     <File Include="Views/Items/Create.cshtml">
       <publishTime>08/17/2018 19:58:39</publishTime>
