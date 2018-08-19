@@ -45,6 +45,10 @@
       $('.place-list option').hide();
       $('.place-list option[data-district=' + district + ']').show();
       $('.place-list option.default').show();
-  });
+    });
+
+    $(document).ready(function () {
+        $('.district-data').trigger('change');
+    });
 
 })(jQuery); // End of use strict

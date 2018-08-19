@@ -7,3 +7,9 @@
 /RescueNeeds/obj
 /RescueNeeds/bin
 /packages
+/.vs/config/applicationhost.config
+/.vs/RescueNeeds/v15/.suo
+/.vs/RescueNeeds/v15/Server/sqlite3/db.lock
+/.vs/RescueNeeds/v15/Server/sqlite3/storage.ide
+/.vs/RescueNeeds/v15/Server/sqlite3/storage.ide-shm
+/.vs/RescueNeeds/v15/Server/sqlite3/storage.ide-wal

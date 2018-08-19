@@ -1,4 +1,4 @@
-﻿@model RescueNeeds.Models.CampRequirementHomeViewModel
+﻿ @model RescueNeeds.Models.CampRequirementHomeViewModel
 
 @{
     ViewBag.Title = "Camps";
@@ -21,18 +21,15 @@
                 <div class="form-row">
                     <div class="col-md-6">
                         <div class="form-label-group">
-                            <select required="required" class="form-control district-data" name="district">
-                                <option value="">Select district</option>
-                                @foreach (var item in Model.District)
-                                {
-                                    <option value="@item.DistrictID">@item.Name</option>
-                                }
-                            </select>
 
-                        </div>
+                            @Html.DropDownList("district", Model.District.Select(c=> new SelectListItem(){ Text = c.Name,Value = c.DistrictID.ToString()}), "Select district", new { @class = "form-control district-data" })
+
+                 </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-label-group">
+                            
+
                             <select class="form-control place-list" name="place">
                                 <option value="" class="default">Select place</option>
                                 @*@foreach (var item in Model.Places.GroupBy(x => x.District.Name))
@@ -44,9 +41,9 @@
                                             }
                                         </optgroup>
                                     }*@
-                                @foreach (var place in Model.Places.OrderBy(x=>x.Name))
+                                @foreach (var place in Model.Places.OrderBy(x => x.Name))
                                 {
-                                    <option value="@place.PlaceID" data-district="@place.DistrictID">@place.Name</option>
+                                    <option value="@place.PlaceID" data-district="@place.DistrictID"   selected="@(Model.PlaceId==place.PlaceID)">@place.Name</option>
                                 }
                             </select>
 
