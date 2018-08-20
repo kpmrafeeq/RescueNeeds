@@ -38,7 +38,8 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.DistrictID, "DistrictID", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("DistrictID", null ,optionLabel: "Select", htmlAttributes: new { @class = "form-control district-data" })
+@Html.DropDownList("DistrictID", null ,optionLabel: "Select", htmlAttributes: new { @class = "form-control district-data" })
+
                         @Html.ValidationMessageFor(model => model.DistrictID, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -47,8 +48,9 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.PlaceID, "PlaceID", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <select class="form-control place-list" id="PlaceID" name="PlaceID">
+                    <select class="form-control place-list" id="PlaceID" name="PlaceID">
                             <option value="" class="default">Select place</option>
+
                             @foreach (var item in camps.OrderBy(x=>x.Name).GroupBy(y=>y.District.Name))
                             {
                                foreach (var place in item)
@@ -56,7 +58,18 @@
                                 <option value="@place.PlaceID" data-district="@place.DistrictID">@place.Name</option>
                                }
                             }
+                        </select>*@
+                        <select class="form-control place-list" name="PlaceID" id="PlaceID">
+                            <option value="" class="default">Select place</option>
+                          
+                            @foreach (var place in ViewBag.PlaceID)
+                            {
+                                <option value="@place.PlaceID" data-district="@place.DistrictID"  >@place.Name</option>
+                            }
                         </select>
+                        
+
+
                         @Html.ValidationMessageFor(model => model.PlaceID, "", new { @class = "text-danger" })
                     </div>
                 </div>
