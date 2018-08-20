@@ -39,6 +39,7 @@ namespace RescueNeeds.Controllers
             if (!string.IsNullOrEmpty(place) && int.TryParse(place, out placeId))
             {
                 model.Data = model.Data.Where(x => x.PlaceID == placeId);
+                model.PlaceId = placeId;
             }
             return View(model);
         }

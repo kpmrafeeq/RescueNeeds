@@ -11,5 +11,7 @@ namespace RescueNeeds.Models
         public IEnumerable<RescueNeeds.Service.Camp> Data { get; set; }
         public IEnumerable<RescueNeeds.Service.Place> Places { get; set; }
         public IEnumerable<RescueNeeds.Service.District> District { get; set; }
+        public int PlaceId{ get; set; }
+
     }
 }
