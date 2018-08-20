@@ -84,7 +84,17 @@ namespace RescueNeeds.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CampsID = new SelectList(db.Camps, "CampsID", "Name", campRequirement.CampsID);
+            if (Session["CampAdmin"] == "true")
+            {
+                var id = (int)Session["CampAdminID"];
+                var camp = db.CampInCharges.Where(x => x.PersonID == id).Select(y => y.CampsID);
+                var camps = db.Camps.Where(x => camp.Contains(x.CampsID));
+                ViewBag.CampsID = camps.ToList();
+            }
+            else
+            {
+                ViewBag.CampsID = db.Camps.ToList();
+            }
             ViewBag.ItemID = new SelectList(db.Items, "ItemID", "Name", campRequirement.ItemID);
             return View(campRequirement);
         }
