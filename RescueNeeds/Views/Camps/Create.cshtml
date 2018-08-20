@@ -58,16 +58,8 @@
                                 <option value="@place.PlaceID" data-district="@place.DistrictID">@place.Name</option>
                                }
                             }
-                        </select>*@
-                        <select class="form-control place-list" name="PlaceID" id="PlaceID">
-                            <option value="" class="default">Select place</option>
-                          
-                            @foreach (var place in ViewBag.PlaceID)
-                            {
-                                <option value="@place.PlaceID" data-district="@place.DistrictID"  >@place.Name</option>
-                            }
                         </select>
-                        
+                     
 
 
                         @Html.ValidationMessageFor(model => model.PlaceID, "", new { @class = "text-danger" })
